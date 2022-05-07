@@ -31,6 +31,8 @@ dependencies {
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
     implementation group: 'org.springframework.boot', name: 'spring-boot-starter-mustache', version: '2.6.7'
     implementation('org.springframework.boot:spring-boot-starter-oauth2-client')
+    implementation('org.springframework.session:spring-session-jdbc')
+    // h2-console이나 rdbms에 세션 관련 테이블 확인 가능
 }
 
 tasks.named('test') {
