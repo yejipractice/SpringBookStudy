@@ -1,5 +1,6 @@
 package com.yejipractice.bookstudy.web;
 
+import com.yejipractice.bookstudy.config.auth.LoginUser;
 import com.yejipractice.bookstudy.config.auth.dto.SessionUser;
 import com.yejipractice.bookstudy.service.posts.PostsService;
 import com.yejipractice.bookstudy.web.dto.PostsResponseDto;
@@ -18,10 +19,11 @@ public class IndexController {
     private final PostsService postsService;
     private final HttpSession httpSession;
 
+    // @LoginUser만 사용하면 세션 정보를 가져올 수 있게 되었다.
     @GetMapping("/")
-    public String index(Model model) {
+    public String index(Model model, @LoginUser SessionUser user) {
         model.addAttribute("posts", postsService.findAllDesc());
-        SessionUser user = (SessionUser) httpSession.getAttribute("user");
+//        SessionUser user = (SessionUser) httpSession.getAttribute("user");
         // 로그인 성공 시 값을 가져올 수 있음
         if (user!= null) {
             model.addAttribute("userName", user.getName());
